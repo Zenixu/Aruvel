@@ -5,7 +5,7 @@ import './library.css'
 
 type View = 'grid' | 'list'
 
-export default function Library() {
+export default function Library({ onRead }: { onRead: () => void }) {
   const [novels, setNovels] = useState<LibraryNovel[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [activeCategory, setActiveCategory] = useState<number | undefined>()
@@ -111,7 +111,7 @@ export default function Library() {
         <ul className={`novel-library ${view}`}>
           {novels.map((novel) => (
             <li key={novel.id} className="novel-item">
-              <div className="typographic-cover" aria-label={`Sampul tipografis: ${novel.name}`}><span>{novel.name}</span></div>
+              <button type="button" className="typographic-cover" aria-label={`Buka pembaca contoh: ${novel.name}`} onClick={onRead}><span>{novel.name}</span></button>
               <div className="novel-details"><h2>{novel.name}</h2><p>{novel.author ?? 'Buku lokal'}</p><label className="novel-category-label">Kategori <select aria-label={`Kategori ${novel.name}`} value={novel.categories[0]?.id ?? ''} onChange={(event) => { if (event.target.value) void changeCategory(novel.id, Number(event.target.value)) }}><option value="">Belum dikategorikan</option>{categories.map((category) => category.id === undefined ? null : <option key={category.id} value={category.id}>{category.name}</option>)}</select></label><span className="unread-count">{novel.unreadCount} belum dibaca</span></div>
               <button type="button" className="remove-novel" onClick={async () => { try { await libraryRepository.remove(novel.id); await refresh() } catch { setError('Novel tidak dapat dihapus. Coba lagi.') } }}>Hapus</button>
             </li>

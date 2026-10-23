@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import Library from './features/library/Library'
+import Reader from './features/reader/Reader'
 import './App.css'
 
 type Theme = 'kertas' | 'sepia' | 'malam' | 'hitam'
 
 export default function App() {
   const [theme, setTheme] = useState<Theme>('kertas')
+  const [reading, setReading] = useState(false)
   return (
     <div className="app" data-theme={theme}>
       <div className="theme-control">
@@ -14,7 +16,8 @@ export default function App() {
           <option value="kertas">Kertas</option><option value="sepia">Sepia</option><option value="malam">Malam</option><option value="hitam">Hitam</option>
         </select>
       </div>
-      <Library />
+      {!reading && <Library onRead={() => setReading(true)} />}
+      {reading && <Reader onClose={() => setReading(false)} />}
     </div>
   )
 }
