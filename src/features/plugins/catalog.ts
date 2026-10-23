@@ -1,3 +1,4 @@
+import { CapacitorHttp } from '@capacitor/core'
 import { getJson } from '../../core/http/request'
 
 export const LNREADER_CATALOG_URL = 'https://raw.githubusercontent.com/LNReader/lnreader-plugins/plugins/v3.0.0/.dist/plugins.min.json'
@@ -10,6 +11,23 @@ export interface CatalogEntry {
   site: string
   url: string
   iconUrl?: string
+}
+
+export interface SourceCheck {
+  checkedAt: number
+  siteStatus?: number
+  pluginStatus?: number
+}
+
+export async function checkCatalogEntry(entry: CatalogEntry): Promise<SourceCheck> {
+  const siteCheck = CapacitorHttp.request({ url: entry.site, method: 'HEAD', connectTimeout: 10_000, readTimeout: 10_000, responseType: 'text' })
+  const pluginCheck = CapacitorHttp.request({ url: entry.url, method: 'GET', headers: { Range: 'bytes=0-1023' }, connectTimeout: 10_000, readTimeout: 10_000, responseType: 'text' })
+  const [site, plugin] = await Promise.allSettled([siteCheck, pluginCheck])
+  return {
+    checkedAt: Date.now(),
+    ...(site.status === 'fulfilled' ? { siteStatus: site.value.status } : {}),
+    ...(plugin.status === 'fulfilled' ? { pluginStatus: plugin.value.status } : {}),
+  }
 }
 
 export async function loadCatalog(): Promise<CatalogEntry[]> {
