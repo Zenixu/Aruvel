@@ -2,12 +2,11 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import App from './App'
 
-describe('Aruvel theme preview', () => {
-  it('changes the active theme and exposes the reader sample', () => {
+describe('Aruvel library', () => {
+  it('changes the display theme and starts with an actionable empty library', async () => {
     render(<App />)
-    expect(screen.getByText('Halaman pertama')).toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: 'Malam' }))
-    expect(screen.getByRole('button', { name: 'Malam' })).toHaveAttribute('aria-pressed', 'true')
-    expect(screen.getByRole('main')).toHaveAttribute('data-theme', 'malam')
+    fireEvent.change(screen.getByLabelText('Tema'), { target: { value: 'malam' } })
+    expect(document.querySelector('.app')).toHaveAttribute('data-theme', 'malam')
+    expect(await screen.findByText(/Library kosong/)).toBeInTheDocument()
   })
 })
