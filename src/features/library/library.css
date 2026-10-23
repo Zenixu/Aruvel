@@ -16,6 +16,9 @@
 .view-toggle { display: flex; gap: var(--s1); margin-left: auto; }
 .view-toggle button { min-width: 64px; }
 .view-toggle button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.epub-import { cursor: pointer; }
+.epub-import input { max-width: min(100%, 240px); }
+.library-notice { color: var(--accent); }
 .library-error { color: #9B261B; font: 14px/1.5 var(--font-ui); }
 .library-empty { padding: 40px 0; color: var(--muted); font: 16px/1.6 var(--font-read); }
 .novel-library { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); margin: var(--s4) 0; padding: 0; list-style: none; }

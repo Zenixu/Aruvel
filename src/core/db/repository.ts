@@ -1,5 +1,6 @@
 import { db } from './database'
-import type { Category, LibraryNovel, Novel } from './types'
+import { isEpubChapterContent, type Category, type EpubChapterContent, type LibraryNovel, type Novel } from './types'
+import type { ImportedEpub } from '../../features/reader/epub'
 
 export const libraryRepository = {
   async list(categoryId?: number): Promise<LibraryNovel[]> {
@@ -30,6 +31,38 @@ export const libraryRepository = {
     const existing = await db.novels.where('[sourceId+path]').equals([novel.sourceId, novel.path]).first()
     if (existing?.id !== undefined) return existing.id
     return db.novels.add(novel)
+  },
+
+  async importEpub(epub: ImportedEpub, categoryId?: number): Promise<number> {
+    return db.transaction('rw', db.novels, db.chapters, db.chapterContents, db.categories, db.novelCategories, async () => {
+      const existing = await db.novels.where('[sourceId+path]').equals([epub.novel.sourceId, epub.novel.path]).first()
+      if (existing?.id !== undefined) {
+        const existingChapterIds = await db.chapters.where('novelId').equals(existing.id).primaryKeys()
+        await db.chapterContents.where('chapterId').anyOf(existingChapterIds).delete()
+        await db.chapters.where('novelId').equals(existing.id).delete()
+        await db.novels.update(existing.id, epub.novel)
+        for (const [position, chapter] of epub.chapters.entries()) {
+          const chapterId = await db.chapters.add({ novelId: existing.id, name: chapter.name, path: chapter.path, position: chapter.position, chapterNumber: chapter.chapterNumber, isRead: false, lastParagraph: 0, updatedAt: Date.now() + position })
+          await db.chapterContents.add({ chapterId, filePath: epub.novel.localFile ?? epub.novel.name, size: new TextEncoder().encode(chapter.content).byteLength, downloadedAt: Date.now(), content: chapter.content } as EpubChapterContent)
+        }
+        return existing.id
+      }
+      const novelId = await db.novels.add(epub.novel)
+      for (const [position, chapter] of epub.chapters.entries()) {
+        const chapterId = await db.chapters.add({ novelId, name: chapter.name, path: chapter.path, position: chapter.position, chapterNumber: chapter.chapterNumber, isRead: false, lastParagraph: 0, updatedAt: Date.now() + position })
+        await db.chapterContents.add({ chapterId, filePath: epub.novel.localFile ?? epub.novel.name, size: new TextEncoder().encode(chapter.content).byteLength, downloadedAt: Date.now(), content: chapter.content } as EpubChapterContent)
+      }
+      const targetCategory = categoryId ?? (await db.categories.where('name').equals('Belum dikategorikan').first())?.id
+      if (targetCategory !== undefined) await db.novelCategories.put({ novelId, categoryId: targetCategory })
+      return novelId
+    })
+  },
+
+  async getEpubChapter(novelId: number, position: number): Promise<{ chapter: import('./types').Chapter; content: EpubChapterContent } | undefined> {
+    const chapter = await db.chapters.where('[novelId+position]').equals([novelId, position]).first()
+    if (chapter?.id === undefined) return undefined
+    const content = await db.chapterContents.where('chapterId').equals(chapter.id).first()
+    return isEpubChapterContent(content) ? { chapter, content } : undefined
   },
 
   async remove(id: number): Promise<void> {

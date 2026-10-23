@@ -7,7 +7,7 @@ type Theme = 'kertas' | 'sepia' | 'malam' | 'hitam'
 
 export default function App() {
   const [theme, setTheme] = useState<Theme>('kertas')
-  const [reading, setReading] = useState(false)
+  const [reading, setReading] = useState<number | undefined>(undefined)
   return (
     <div className="app" data-theme={theme}>
       <div className="theme-control">
@@ -16,8 +16,8 @@ export default function App() {
           <option value="kertas">Kertas</option><option value="sepia">Sepia</option><option value="malam">Malam</option><option value="hitam">Hitam</option>
         </select>
       </div>
-      {!reading && <Library onRead={() => setReading(true)} />}
-      {reading && <Reader onClose={() => setReading(false)} />}
+      {reading === undefined && <Library onRead={setReading} />}
+      {reading !== undefined && <Reader novelId={reading} onClose={() => setReading(undefined)} />}
     </div>
   )
 }

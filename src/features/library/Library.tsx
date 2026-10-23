@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import { categoryRepository, libraryRepository } from '../../core/db/repository'
 import type { Category, LibraryNovel } from '../../core/db/types'
+import { parseEpub } from '../reader/epub'
 import './library.css'
 
 type View = 'grid' | 'list'
 
-export default function Library({ onRead }: { onRead: () => void }) {
+export default function Library({ onRead }: { onRead: (novelId: number) => void }) {
   const [novels, setNovels] = useState<LibraryNovel[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [activeCategory, setActiveCategory] = useState<number | undefined>()
@@ -13,6 +14,8 @@ export default function Library({ onRead }: { onRead: () => void }) {
   const [title, setTitle] = useState('')
   const [categoryName, setCategoryName] = useState('')
   const [error, setError] = useState('')
+  const [notice, setNotice] = useState('')
+  const [importing, setImporting] = useState(false)
 
   const refresh = useCallback(async () => {
     const [nextNovels, nextCategories] = await Promise.all([
@@ -60,6 +63,25 @@ export default function Library({ onRead }: { onRead: () => void }) {
     }
   }
 
+  async function importFile(event: FormEvent<HTMLInputElement>) {
+    const file = event.currentTarget.files?.[0]
+    event.currentTarget.value = ''
+    if (!file) return
+    setImporting(true)
+    setError('')
+    setNotice('')
+    try {
+      const epub = await parseEpub(file)
+      await libraryRepository.importEpub(epub)
+      await refresh()
+      setNotice(`“${epub.novel.name}” berhasil diimpor (${epub.chapters.length} bagian).`)
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : 'EPUB tidak dapat diimpor.')
+    } finally {
+      setImporting(false)
+    }
+  }
+
   async function addCategory(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const name = categoryName.trim()
@@ -91,6 +113,7 @@ export default function Library({ onRead }: { onRead: () => void }) {
         ))}
       </nav>
       <section className="library-actions" aria-label="Pengelolaan library">
+        <label className="library-form epub-import">Impor EPUB<input type="file" accept=".epub,application/epub+zip" aria-label="Pilih berkas EPUB" disabled={importing} onChange={importFile} /></label>
         <form onSubmit={addNovel} className="library-form">
           <label htmlFor="novel-title">Tambah novel</label>
           <input id="novel-title" value={title} onChange={(event) => setTitle(event.target.value)} placeholder="Judul novel" />
@@ -107,11 +130,13 @@ export default function Library({ onRead }: { onRead: () => void }) {
         </div>
       </section>
       {error && <p className="library-error" role="alert">{error}</p>}
+      {notice && <p className="library-notice" role="status">{notice}</p>}
+      {importing && <p role="status">Mengimpor EPUB…</p>}
       {novels.length === 0 ? <p className="library-empty">Library kosong. Tambahkan novel di atas atau impor berkas EPUB.</p> : (
         <ul className={`novel-library ${view}`}>
           {novels.map((novel) => (
             <li key={novel.id} className="novel-item">
-              <button type="button" className="typographic-cover" aria-label={`Buka pembaca contoh: ${novel.name}`} onClick={onRead}><span>{novel.name}</span></button>
+              <button type="button" className="typographic-cover" aria-label={`Buka pembaca: ${novel.name}`} onClick={() => onRead(novel.id)}><span>{novel.name}</span></button>
               <div className="novel-details"><h2>{novel.name}</h2><p>{novel.author ?? 'Buku lokal'}</p><label className="novel-category-label">Kategori <select aria-label={`Kategori ${novel.name}`} value={novel.categories[0]?.id ?? ''} onChange={(event) => { if (event.target.value) void changeCategory(novel.id, Number(event.target.value)) }}><option value="">Belum dikategorikan</option>{categories.map((category) => category.id === undefined ? null : <option key={category.id} value={category.id}>{category.name}</option>)}</select></label><span className="unread-count">{novel.unreadCount} belum dibaca</span></div>
               <button type="button" className="remove-novel" onClick={async () => { try { await libraryRepository.remove(novel.id); await refresh() } catch { setError('Novel tidak dapat dihapus. Coba lagi.') } }}>Hapus</button>
             </li>

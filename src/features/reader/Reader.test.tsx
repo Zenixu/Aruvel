@@ -1,6 +1,7 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { db } from '../../core/db/database'
+import type { EpubChapterContent } from '../../core/db/types'
 import Reader from './Reader'
 
 beforeEach(async () => { await db.open() })
@@ -27,6 +28,32 @@ describe('Reader', () => {
     expect(screen.getByLabelText('Ukuran font')).toHaveValue('22')
     expect(screen.getByLabelText('Tema baca')).toHaveValue('malam')
     expect(document.querySelector('.reader-screen')).toHaveAttribute('data-theme', 'malam')
+  })
+
+  it('opens imported EPUB chapters, navigates within them, and restores the saved paragraph position', async () => {
+    cleanup()
+    const novelId = await db.novels.add({ sourceId: 'local', path: 'epub:reader', name: 'Novel Reader', status: 'completed' })
+    const firstId = await db.chapters.add({ novelId, name: 'Bab Pertama', path: 'first.xhtml', position: 0, isRead: false, lastParagraph: 1, updatedAt: 1 })
+    const secondId = await db.chapters.add({ novelId, name: 'Bab Kedua', path: 'second.xhtml', position: 1, isRead: false, lastParagraph: 0, updatedAt: 2 })
+    await db.chapterContents.add({ chapterId: firstId, content: 'Baris 1\nBaris 2\nBaris 3', filePath: 'reader.epub', size: 20, downloadedAt: 1 } as EpubChapterContent)
+    await db.chapterContents.add({ chapterId: secondId, content: 'Bab kedua\nLanjutan bab kedua', filePath: 'reader.epub', size: 20, downloadedAt: 1 } as EpubChapterContent)
+    const view = render(<Reader novelId={novelId} onClose={() => undefined} />)
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Berikutnya' })).toBeEnabled())
+    expect(screen.getByRole('heading', { name: 'Bab Pertama' })).toBeInTheDocument()
+    expect(screen.getByText('Bab 1/2 · paragraf 2/3')).toBeInTheDocument()
+    expect(await db.chapters.get(firstId)).toMatchObject({ lastParagraph: 1 })
+    fireEvent.click(screen.getByRole('button', { name: 'Berikutnya' }))
+    await waitFor(() => expect(screen.getByText('Bab 1/2 · paragraf 3/3')).toBeInTheDocument())
+    fireEvent.click(screen.getByRole('button', { name: 'Berikutnya' }))
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'Bab Kedua' })).toBeInTheDocument())
+    fireEvent.click(screen.getByRole('button', { name: 'Sebelumnya' }))
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'Bab Pertama' })).toBeInTheDocument())
+    expect(await db.chapters.get(firstId)).toMatchObject({ lastParagraph: 2 })
+    view.unmount()
+    cleanup()
+    render(<Reader novelId={novelId} onClose={() => undefined} />)
+    await waitFor(() => expect(screen.getByText('Bab 1/2 · paragraf 3/3')).toBeInTheDocument())
+    expect(screen.getByRole('heading', { name: 'Bab Pertama' })).toBeInTheDocument()
   })
 
   it('renders chapter content as selectable plain text', () => {
