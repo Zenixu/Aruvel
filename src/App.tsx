@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Library from './features/library/Library'
 import Reader from './features/reader/Reader'
+import PluginCatalog from './features/plugins/PluginCatalog'
 import './App.css'
 
 type Theme = 'kertas' | 'sepia' | 'malam' | 'hitam'
@@ -16,7 +17,7 @@ export default function App() {
           <option value="kertas">Kertas</option><option value="sepia">Sepia</option><option value="malam">Malam</option><option value="hitam">Hitam</option>
         </select>
       </div>
-      {reading === undefined && <Library onRead={setReading} />}
+      {reading === undefined && <><Library onRead={setReading} /><PluginCatalog /></>}
       {reading !== undefined && <Reader novelId={reading} onClose={() => setReading(undefined)} />}
     </div>
   )

@@ -18,3 +18,14 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .reading-sample > p:last-child { margin: 0; font: 18px/1.65 var(--font-read); text-wrap: pretty; }
 footer { max-width: 640px; margin: 64px auto 0; border-top: 1px solid var(--rule); padding: var(--s4) 0; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; } }
+
+.plugin-catalog { max-width: 640px; margin: 48px auto; border-top: 1px solid var(--rule); padding-top: var(--s4); }
+.plugin-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); }
+.plugin-heading h2 { margin: 6px 0 0; font: 400 20px/1.3 var(--font-read); }
+.plugin-note, .plugin-count { color: var(--muted); font: 14px/1.5 var(--font-ui); }
+.plugin-filters { display: flex; flex-wrap: wrap; gap: var(--s2); margin: var(--s3) 0; }
+.plugin-list { list-style: none; margin: 0; padding: 0; }
+.plugin-list li { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); border-top: 1px solid var(--rule); padding: var(--s3) 0; }
+.plugin-list li div { min-width: 0; display: grid; gap: 4px; }
+.plugin-list li span { color: var(--muted); font: 12px/1.4 var(--font-ui); overflow-wrap: anywhere; }
+.plugin-badge { flex: none; border: 1px solid var(--rule); border-radius: 99px; padding: 4px 8px; }
