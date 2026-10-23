@@ -1,0 +1,13 @@
+@import '@fontsource/literata/400.css';
+@import '@fontsource/literata/600.css';
+@import '@fontsource/hanken-grotesk/400.css';
+@import '@fontsource/hanken-grotesk/500.css';
+@import '@fontsource/hanken-grotesk/600.css';
+:root { font-family: var(--font-ui); font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s6: 24px; --s8: 32px; --r-sm: 4px; --r-md: 6px; --font-read: 'Literata', Georgia, serif; --font-ui: 'Hanken Grotesk', system-ui, sans-serif; --reader-size: 18px; --reader-lh: 1.65; --reader-measure: 66ch; }
+:root, .app[data-theme="kertas"] { --bg: #F6F1E7; --surface: #EFE8DA; --text: #1F1B16; --muted: #6B6358; --rule: #D9D0BF; --accent: #8C2F1B; --on-accent: #F6F1E7; }
+.app[data-theme="sepia"] { --bg: #EADFC6; --surface: #E0D3B6; --text: #33291C; --muted: #665A47; --rule: #CFC09F; --accent: #7A3B1E; --on-accent: #EADFC6; }
+.app[data-theme="malam"] { --bg: #14163A; --surface: #252B6B; --text: #F4EFE1; --text-read: #E4DECF; --muted: #A9ADE0; --rule: #343B80; --accent: #C8A45C; --on-accent: #14163A; }
+.app[data-theme="hitam"] { --bg: #000000; --surface: #161616; --text: #F4EFE1; --text-read: #E4DECF; --muted: #A9ADE0; --rule: #343B80; --accent: #C8A45C; --on-accent: #000000; }
+* { box-sizing: border-box; }
+body { min-width: 320px; min-height: 100vh; margin: 0; background: var(--bg); }
+button { font: inherit; }
