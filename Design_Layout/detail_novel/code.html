@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#14163A;color:#F4EFE1;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'paper-text': '#1F1B16', 'on-primary-container': '#ffab99', 'on-primary-fixed': '#3d0600', 'error-container': '#ffdad6', 'night-text-read': '#E4DECF', 'surface-bright': '#fff8f3', 'on-tertiary-fixed-variant': '#004d67', 'amoled-accent': '#C8A45C', 'on-tertiary-container': '#8bc8ea', 'on-error': '#ffffff', 'error': '#ba1a1a', 'on-secondary': '#ffffff', 'surface': '#fff8f3', 'sepia-bg': '#EADFC6', 'amoled-rule': '#2A2A2A', 'paper-on-accent': '#F6F1E7', 'on-tertiary-fixed': '#001e2b', 'on-secondary-fixed-variant': '#4d463c', 'paper-accent': '#8C2F1B', 'on-surface-variant': '#56423d', 'night-on-accent': '#14163A', 'surface-container-high': '#f0e7de', 'paper-bg': '#F6F1E7', 'amoled-bg': '#000000', 'on-error-container': '#93000a', 'sepia-accent': '#7A3B1E', 'surface-tint': '#a13e29', 'secondary-fixed-dim': '#d0c5b8', 'paper-muted': '#6B6358', 'outline-variant': '#ddc0ba', 'primary': '#6c1806', 'tertiary': '#003d52', 'sepia-surface': '#E0D3B6', 'secondary': '#655d52', 'outline': '#8a726c', 'surface-variant': '#eae1d8', 'on-secondary-container': '#696156', 'amoled-muted': '#A9ADE0', 'night-accent': '#C8A45C', 'night-rule': '#343B80', 'on-background': '#1f1b16', 'paper-surface': '#EFE8DA', 'on-surface': '#1f1b16', 'sepia-on-accent': '#EADFC6', 'tertiary-fixed-dim': '#91cef0', 'secondary-container': '#e9ded0', 'surface-container': '#f6ece4', 'tertiary-fixed': '#c2e8ff', 'surface-container-low': '#fcf2e9', 'sepia-text': '#33291C', 'inverse-on-surface': '#f9efe6', 'paper-rule': '#D9D0BF', 'background': '#fff8f3', 'night-surface': '#252B6B', 'on-tertiary': '#ffffff', 'surface-dim': '#e2d8d0', 'inverse-primary': '#ffb4a4', 'inverse-surface': '#34302a', 'amoled-surface': '#121212', 'on-primary-fixed-variant': '#812714', 'night-muted': '#A9ADE0', 'primary-fixed-dim': '#ffb4a4', 'on-primary': '#ffffff', 'surface-container-highest': '#eae1d8', 'primary-container': '#8c2f1b', 'night-text': '#F4EFE1', 'sepia-muted': '#665A47', 'surface-container-lowest': '#ffffff', 'primary-fixed': '#ffdad3', 'amoled-text': '#F4EFE1', 'on-secondary-fixed': '#201b12', 'sepia-rule': '#CFC09F', 'night-bg': '#14163A', 'tertiary-container': '#005572', 'secondary-fixed': '#ece1d3' }, borderRadius: { DEFAULT: '0.125rem', lg: '0.25rem', xl: '0.5rem', full: '0.75rem' }, spacing: { 'space-md': '0.75rem', 'space-xs': '0.25rem', 'space-xl': '1.5rem', 'space-sm': '0.5rem', 'gutter': '1rem', 'margin': '1rem', 'space-lg': '1rem' }, fontFamily: { 'body-lg': ['Literata'], 'label-md': ['Hanken Grotesk'], 'label-sm': ['Hanken Grotesk'], 'body-reading': ['Literata'], 'label-lg': ['Hanken Grotesk'], 'headline-md': ['Literata'], 'code': ['Hanken Grotesk'], 'headline-lg': ['Literata'], 'headline-sm': ['Literata'], 'body-md': ['Literata'] }, fontSize: { 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }], 'label-md': ['14px', { lineHeight: '18px', fontWeight: '500' }], 'label-sm': ['12px', { lineHeight: '16px', fontWeight: '500' }], 'body-reading': ['18px', { lineHeight: '30px', fontWeight: '400' }], 'label-lg': ['16px', { lineHeight: '20px', fontWeight: '500' }], 'headline-md': ['20px', { lineHeight: '28px', fontWeight: '600' }], 'code': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'headline-lg': ['28px', { lineHeight: '36px', fontWeight: '600' }], 'headline-sm': ['16px', { lineHeight: '24px', fontWeight: '600' }], 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-night-bg text-night-text font-body-md antialiased flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-night-bg/95 backdrop-blur-xl pt-safe"><div class="h-16 px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm min-w-0"><img alt="Logo_Aruvel.jpg" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W1VYs5pnE26-ri8vkF2r_uWGoRANTZrMTHibPdNNB9uSg2Ehpikca2CLkv6AHW8A37wpWjpikExn2lVTmexO5F2rjgMHUrTas6nblpS90LBf0dllGd0cCkd_qL9JlRnCoAcF0OT0Tm5xr18b4qa-_1R70S3mGmDNN6FHkcFbGq05GFmonsb4WHmSklYMPMdSheOpEw_hnvvgY_0sRjPBls6cPvphxXLD_ybp6eLH7YuE1gIbbC3WYSIpBmFMM48cxBxbmS_qn2UPo"/><span class="font-label-lg text-label-lg tracking-wide text-night-text uppercase truncate">Aruvel</span></div><div class="flex items-center gap-space-xs"><button aria-label="Pencarian" class="w-12 h-12 flex items-center justify-center text-night-muted hover:text-night-text active:text-night-accent"><span class="material-symbols-outlined text-[22px]">search</span></button><button aria-label="Filter dan Tampilan" class="w-12 h-12 flex items-center justify-center text-night-muted hover:text-night-text active:text-night-accent"><span class="material-symbols-outlined text-[22px]">tune</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 bg-night-bg"><div class="flex flex-col w-full text-night-text select-none">
+<!-- Navigasi Sub-Header & Status Baris Atas -->
+<header class="sticky top-0 z-40 bg-night-bg/95 backdrop-blur-md border-b border-night-rule px-gutter py-space-xs flex items-center justify-between min-h-[56px]">
+<div class="flex items-center gap-space-sm min-w-0">
+<button aria-label="Kembali ke halaman sebelumnya" class="w-12 h-12 -ml-space-xs flex items-center justify-center text-night-muted hover:text-night-text active:text-night-accent transition-colors" type="button">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-night-text truncate">Catatan Pinggir Malam</span>
+<span class="font-label-sm text-label-sm text-night-muted truncate">Sumber: Arsip Sastra Nusantara</span>
+</div>
+</div>
+<div class="flex items-center">
+<button aria-label="Simpan ke perpustakaan" class="w-12 h-12 flex items-center justify-center text-night-muted hover:text-night-text active:text-night-accent transition-colors" id="bookmarkBtn" type="button">
+<span class="material-symbols-outlined text-[22px]" id="bookmarkIcon">bookmark</span>
+</button>
+<button aria-label="Pilihan novel lainnya" class="w-12 h-12 flex items-center justify-center text-night-muted hover:text-night-text active:text-night-accent transition-colors" id="optionsBtn" type="button">
+<span class="material-symbols-outlined text-[22px]">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Panel Aksi Kontekstual (Dropdown Tersembunyi) -->
+<div class="hidden bg-night-surface border-b border-night-rule px-gutter py-space-sm flex-col text-night-text" id="optionsMenu">
+<button class="h-12 w-full text-left font-label-md text-label-md text-night-text hover:text-night-accent flex items-center gap-space-md" type="button">
+<span class="material-symbols-outlined text-[20px] text-night-muted">download_for_offline</span>
+<span>Unduh Semua Bab yang Tersedia</span>
+</button>
+<button class="h-12 w-full text-left font-label-md text-label-md text-night-text hover:text-night-accent flex items-center gap-space-md" type="button">
+<span class="material-symbols-outlined text-[20px] text-night-muted">done_all</span>
+<span>Tandai Semua Sudah Dibaca</span>
+</button>
+<button class="h-12 w-full text-left font-label-md text-label-md text-night-text hover:text-night-accent flex items-center gap-space-md" type="button">
+<span class="material-symbols-outlined text-[20px] text-night-muted">share</span>
+<span>Bagikan Tautan Arsip</span>
+</button>
+</div>
+<!-- Hero & Informasi Utama Novel -->
+<section class="px-gutter pt-space-lg pb-space-lg flex flex-col gap-space-lg border-b border-night-rule">
+<div class="flex gap-space-lg items-start">
+<!-- Sampul Novel Rasio 2:3 -->
+<div class="w-28 shrink-0 aspect-[2/3] bg-night-surface border border-night-rule rounded-lg overflow-hidden relative">
+<img alt="Sampul Buku Catatan Pinggir Malam" class="w-full h-full object-cover" data-alt="Editorial book cover of novel Catatan Pinggir Malam by R. Daniswara. Dark indigo paper background with minimalist ivory typography, refined celestial botanical woodcut illustration, muted gold accent framing, authentic literary print texture with crisp linework, no 3D renders." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyj1ILCcuPmY5XIxIzookV7S5YA1T2mBNXEWub9P9yJ-rKuoVUyOAXu4w0xf-C9WtYleS4qHmIXnJzSxxUzA425bEM6GVzSmcbXcNNhJROyjOPFpSENSi0cu5zaWnjAiR13aCQlbTO3kLNkmj8hjntsjjnbYeIRhCAI8wmjv9-TlFDgogJfpTWunR0tI4oFBxy5n_GI2F5btA1BOK3hGm-AT5APFt1aavhz9aXfvVgZuj38lsDsaBf8w"/>
+</div>
+<!-- Metadata Utama -->
+<div class="flex flex-col min-w-0 flex-1 justify-between">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-night-text leading-tight tracking-tight">Catatan Pinggir Malam</h1>
+<p class="font-label-sm text-label-sm text-night-muted mt-space-xs tracking-normal">
+            R. Daniswara • Berjalan • Domain Publik
+          </p>
+</div>
+<div class="mt-space-md flex flex-col gap-space-xs border-t border-night-rule pt-space-sm">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-night-muted">Total Bab</span>
+<span class="text-night-text font-code tabular-nums">120 Bab <span class="text-night-accent font-medium">(3 baru)</span></span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-night-muted">Progres Baca</span>
+<span class="text-night-text font-code tabular-nums">Bab 42 <span class="text-night-muted">/ 120 (35%)</span></span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-night-muted">Pembaruan</span>
+<span class="text-night-muted font-code">Kemarin, 21:14</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tombol Aksi Utama (CTA) -->
+<div class="grid grid-cols-[1fr_auto] gap-space-sm items-center">
+<button class="h-12 px-space-lg bg-night-accent text-night-on-accent rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-space-sm active:opacity-90" type="button">
+<span class="material-symbols-outlined text-[20px]">auto_stories</span>
+<span>Lanjut Baca Bab 43</span>
+</button>
+<button aria-label="Unduh novel untuk luring" class="h-12 px-space-lg bg-transparent text-night-text border border-night-rule rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-space-xs hover:bg-night-surface active:bg-night-surface" type="button">
+<span class="material-symbols-outlined text-[20px] text-night-muted">download</span>
+<span>Unduh</span>
+</button>
+</div>
+</section>
+<!-- Bagian Sinopsis & Metadata -->
+<section class="px-gutter py-space-lg border-b border-night-rule flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-night-muted font-semibold">Sinopsis</span>
+<span class="font-code text-code text-night-muted">ID: 884-ID-LIT</span>
+</div>
+<div class="relative">
+<p class="font-body-md text-body-md text-night-text-read line-clamp-3 leading-relaxed" id="synopsisText">
+        Mengisahkan narasi catatan harian seorang perancang aksara di pesisir Batavia pada peralihan abad ke-19. Mengurai intrik senyap di balik percetakan koran partikelir, risalah politik tersembunyi dalam bait puisi terjemahan, dan pertemuan-pertemuan rahasia di kedai kopi sunyi selepas jam malam diberlakukan oleh garnisun kolonial.
+      </p>
+<button class="mt-space-xs font-label-sm text-label-sm text-night-accent font-medium hover:underline inline-flex items-center gap-space-xs" id="expandSynopsisBtn" type="button">
+<span>Selengkapnya</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<!-- Kategori / Genre Ramping -->
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="px-space-sm py-1 bg-night-surface border border-night-rule rounded font-label-sm text-label-sm text-night-muted">Sastra Klasik</span>
+<span class="px-space-sm py-1 bg-night-surface border border-night-rule rounded font-label-sm text-label-sm text-night-muted">Fiksi Sejarah</span>
+<span class="px-space-sm py-1 bg-night-surface border border-night-rule rounded font-label-sm text-label-sm text-night-muted">Misteri Arsip</span>
+<span class="px-space-sm py-1 bg-night-surface border border-night-rule rounded font-label-sm text-label-sm text-night-muted">Epistolari</span>
+</div>
+</section>
+<!-- Navigasi Daftar Bab -->
+<section class="flex flex-col">
+<!-- Header Sub-seksi Daftar Bab -->
+<div class="px-gutter pt-space-lg pb-space-md bg-night-bg border-b border-night-rule flex flex-col gap-space-sm sticky top-14 z-30">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-night-text flex items-center gap-space-xs">
+<span>Daftar Bab</span>
+<span class="font-code text-code text-night-muted font-normal">(120)</span>
+</h2>
+<!-- Pengurutan Bab -->
+<button class="h-10 px-space-sm flex items-center gap-space-xs text-night-muted hover:text-night-text active:text-night-accent font-label-sm text-label-sm" id="sortOrderBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+<span id="sortOrderLabel">Terlama</span>
+</button>
+</div>
+<!-- Filter Kategori Bab -->
+<div class="flex gap-space-xs overflow-x-auto no-scrollbar">
+<button class="chapter-filter-btn px-space-md h-8 bg-night-surface text-night-text border border-night-rule rounded font-label-sm text-label-sm font-medium whitespace-nowrap" data-filter="all" type="button">Semua</button>
+<button class="chapter-filter-btn px-space-md h-8 bg-transparent text-night-muted hover:text-night-text border border-transparent rounded font-label-sm text-label-sm font-medium whitespace-nowrap" data-filter="unread" type="button">Belum Dibaca (78)</button>
+<button class="chapter-filter-btn px-space-md h-8 bg-transparent text-night-muted hover:text-night-text border border-transparent rounded font-label-sm text-label-sm font-medium whitespace-nowrap" data-filter="downloaded" type="button">Terunduh (45)</button>
+</div>
+</div>
+<!-- Tabel / Daftar Bab Rapat dan Terstruktur -->
+<div class="flex flex-col divide-y divide-night-rule bg-night-bg" id="chapterList">
+<!-- Bab Baru 120 -->
+<div class="chapter-item flex items-center justify-between px-gutter py-space-sm min-h-[52px] hover:bg-night-surface/50 active:bg-night-surface" data-downloaded="true" data-status="unread">
+<div class="flex items-baseline gap-space-md min-w-0 pr-space-sm">
+<span class="font-code text-label-md tabular-nums text-night-text shrink-0 w-8">120</span>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-body-md text-body-md text-night-text truncate font-medium">Batas Tipis Fajar</span>
+<span class="px-1.5 py-0.5 bg-night-accent/20 text-night-accent border border-night-accent/40 rounded font-code text-[10px] leading-none uppercase">Baru</span>
+</div>
+<span class="font-label-sm text-label-sm text-night-muted">2.420 kata</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="material-symbols-outlined text-[16px] text-night-muted" title="Tersimpan di perangkat">offline_pin</span>
+<span class="font-code text-code text-night-muted">Kemarin</span>
+</div>
+</div>
+<!-- Bab Baru 119 -->
+<div class="chapter-item flex items-center justify-between px-gutter py-space-sm min-h-[52px] hover:bg-night-surface/50 active:bg-night-surface" data-downloaded="true" data-status="unread">
+<div class="flex items-baseline gap-space-md min-w-0 pr-space-sm">
+<span class="font-code text-label-md tabular-nums text-night-text shrink-0 w-8">119</span>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-body-md text-body-md text-night-text truncate font-medium">Aroma Timbal dan Jelaga</span>
+<span class="px-1.5 py-0.5 bg-night-accent/20 text-night-accent border border-night-accent/40 rounded font-code text-[10px] leading-none uppercase">Baru</span>
+</div>
+<span class="font-label-sm text-label-sm text-night-muted">1.980 kata</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="material-symbols-outlined text-[16px] text-night-muted" title="Tersimpan di perangkat">offline_pin</span>
+<span class="font-code text-code text-night-muted">2 hr lalu</span>
+</div>
+</div>
+<!-- Bab Baru 118 -->
+<div class="chapter-item flex items-center justify-between px-gutter py-space-sm min-h-[52px] hover:bg-night-surface/50 active:bg-night-surface" data-downloaded="false" data-status="unread">
+<div class="flex items-baseline gap-space-md min-w-0 pr-space-sm">
+<span class="font-code text-label-md tabular-nums text-night-text shrink-0 w-8">118</span>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-body-md text-body-md text-night-text truncate font-medium">Surat Kaleng Tanpa Prangko</span>
+<span class="px-1.5 py-0.5 bg-night-accent/20 text-night-accent border border-night-accent/40 rounded font-code text-[10px] leading-none uppercase">Baru</span>
+</div>
+<span class="font-label-sm text-label-sm text-night-muted">3.100 kata</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="font-code text-code text-night-muted">3 hr lalu</span>
+</div>
+</div>
+<!-- Bab Belum Dibaca Standar: Bab 44 -->
+<div class="chapter-item flex items-center justify-between px-gutter py-space-sm min-h-[52px] hover:bg-night-surface/50 active:bg-night-surface" data-downloaded="false" data-status="unread">
+<div class="flex items-baseline gap-space-md min-w-0 pr-space-sm">
+<span class="font-code text-label-md tabular-nums text-night-text shrink-0 w-8">044</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-night-text truncate">Langkah Kaki di Gang Sawo</span>
+<span class="font-label-sm text-label-sm text-night-muted">2.040 kata</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="font-code text-code text-night-muted">12 Mei</span>
+</div>
+</div>
+<!-- Bab Belum Dibaca Standar: Bab 43 (Bab Berikutnya) -->
+<div class="chapter-item flex items-center justify-between px-gutter py-space-sm min-h-[52px] bg-night-surface/40 hover:bg-night-surface active:bg-night-surface" data-downloaded="true" data-status="unread">
+<div class="flex items-baseline gap-space-md min-w-0 pr-space-sm">
+<span class="font-code text-label-md tabular-nums text-night-accent font-semibold shrink-0 w-8">043</span>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-body-md text-body-md text-night-text truncate font-semibold">Percetakan Bintang Timoer</span>
+<span class="font-label-sm text-label-sm text-night-accent font-medium">• Baca Berikutnya</span>
+</div>
+<span class="font-label-sm text-label-sm text-night-muted">2.750 kata</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="material-symbols-outlined text-[16px] text-night-accent" title="Tersimpan di perangkat">offline_pin</span>
+<span class="font-code text-code text-night-muted">10 Mei</span>
+</div>
+</div>
+<!-- Bab Sudah Dibaca: Bab 42 (Pudar / muted, tanpa centang) -->
+<div class="chapter-item flex items-center justify-between px-gutter py-space-sm min-h-[52px] hover:bg-night-surface/30 active:bg-night-surface" data-downloaded="true" data-status="read">
+<div class="flex items-baseline gap-space-md min-w-0 pr-space-sm">
+<span class="font-code text-label-md tabular-nums text-night-muted shrink-0 w-8">042</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-night-muted truncate">Perjamuan Teh di Rijswijk</span>
+<span class="font-label-sm text-label-sm text-night-muted/70">Selesai dibaca</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="material-symbols-outlined text-[16px] text-night-muted/50" title="Tersimpan di perangkat">offline_pin</span>
+<span class="font-code text-code text-night-muted/70">8 Mei</span>
+</div>
+</div>
+<!-- Bab Sudah Dibaca: Bab 41 -->
+<div class="chapter-item flex items-center justify-between px-gutter py-space-sm min-h-[52px] hover:bg-night-surface/30 active:bg-night-surface" data-downloaded="true" data-status="read">
+<div class="flex items-baseline gap-space-md min-w-0 pr-space-sm">
+<span class="font-code text-label-md tabular-nums text-night-muted shrink-0 w-8">041</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-night-muted truncate">Dua Versi Maklumat</span>
+<span class="font-label-sm text-label-sm text-night-muted/70">Selesai dibaca</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="material-symbols-outlined text-[16px] text-night-muted/50" title="Tersimpan di perangkat">offline_pin</span>
+<span class="font-code text-code text-night-muted/70">5 Mei</span>
+</div>
+</div>
+<!-- Bab Sudah Dibaca: Bab 01 -->
+<div class="chapter-item flex items-center justify-between px-gutter py-space-sm min-h-[52px] hover:bg-night-surface/30 active:bg-night-surface" data-downloaded="false" data-status="read">
+<div class="flex items-baseline gap-space-md min-w-0 pr-space-sm">
+<span class="font-code text-label-md tabular-nums text-night-muted shrink-0 w-8">001</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-night-muted truncate">Prolog: Gerimis di Pelabuhan Sunda Kelapa</span>
+<span class="font-label-sm text-label-sm text-night-muted/70">Selesai dibaca</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="font-code text-code text-night-muted/70">12 Jan</span>
+</div>
+</div>
+</div>
+<!-- Informasi Batas Arsip Bab -->
+<div class="px-gutter py-space-lg text-center border-t border-night-rule">
+<span class="font-label-sm text-label-sm text-night-muted tracking-wide uppercase">Akhir dari Daftar Bab Yang Tersedia</span>
+</div>
+</section>
+</div>
+<script>
+  (function () {
+    // Interaksi Tombol Menu Pilihan Titik Tiga
+    const optionsBtn = document.getElementById('optionsBtn');
+    const optionsMenu = document.getElementById('optionsMenu');
+    if (optionsBtn && optionsMenu) {
+      optionsBtn.addEventListener('click', () => {
+        optionsMenu.classList.toggle('hidden');
+        optionsMenu.classList.toggle('flex');
+      });
+    }
+
+    // Interaksi Toggle Bookmark / Library
+    const bookmarkBtn = document.getElementById('bookmarkBtn');
+    const bookmarkIcon = document.getElementById('bookmarkIcon');
+    let isBookmarked = true;
+    if (bookmarkBtn && bookmarkIcon) {
+      bookmarkIcon.style.fontVariationSettings = "'FILL' 1";
+      bookmarkBtn.classList.add('text-night-accent');
+      bookmarkBtn.addEventListener('click', () => {
+        isBookmarked = !isBookmarked;
+        if (isBookmarked) {
+          bookmarkIcon.style.fontVariationSettings = "'FILL' 1";
+          bookmarkBtn.classList.add('text-night-accent');
+          bookmarkBtn.classList.remove('text-night-muted');
+        } else {
+          bookmarkIcon.style.fontVariationSettings = "'FILL' 0";
+          bookmarkBtn.classList.remove('text-night-accent');
+          bookmarkBtn.classList.add('text-night-muted');
+        }
+      });
+    }
+
+    // Interaksi Perluas Sinopsis
+    const expandSynopsisBtn = document.getElementById('expandSynopsisBtn');
+    const synopsisText = document.getElementById('synopsisText');
+    if (expandSynopsisBtn && synopsisText) {
+      expandSynopsisBtn.addEventListener('click', () => {
+        const isClamped = synopsisText.classList.contains('line-clamp-3');
+        if (isClamped) {
+          synopsisText.classList.remove('line-clamp-3');
+          expandSynopsisBtn.innerHTML = '<span>Tutup</span><span class="material-symbols-outlined text-[16px]">expand_less</span>';
+        } else {
+          synopsisText.classList.add('line-clamp-3');
+          expandSynopsisBtn.innerHTML = '<span>Selengkapnya</span><span class="material-symbols-outlined text-[16px]">expand_more</span>';
+        }
+      });
+    }
+
+    // Filter Bab (Semua, Belum Dibaca, Terunduh)
+    const filterButtons = document.querySelectorAll('.chapter-filter-btn');
+    const chapterItems = document.querySelectorAll('.chapter-item');
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach((b) => {
+          b.classList.remove('bg-night-surface', 'text-night-text', 'border-night-rule');
+          b.classList.add('bg-transparent', 'text-night-muted', 'border-transparent');
+        });
+
+        btn.classList.add('bg-night-surface', 'text-night-text', 'border-night-rule');
+        btn.classList.remove('bg-transparent', 'text-night-muted', 'border-transparent');
+
+        const filter = btn.getAttribute('data-filter');
+
+        chapterItems.forEach((item) => {
+          const status = item.getAttribute('data-status');
+          const downloaded = item.getAttribute('data-downloaded') === 'true';
+
+          if (filter === 'all') {
+            item.classList.remove('hidden');
+            item.classList.add('flex');
+          } else if (filter === 'unread') {
+            if (status === 'unread') {
+              item.classList.remove('hidden');
+              item.classList.add('flex');
+            } else {
+              item.classList.add('hidden');
+              item.classList.remove('flex');
+            }
+          } else if (filter === 'downloaded') {
+            if (downloaded) {
+              item.classList.remove('hidden');
+              item.classList.add('flex');
+            } else {
+              item.classList.add('hidden');
+              item.classList.remove('flex');
+            }
+          }
+        });
+      });
+    });
+
+    // Urutan Bab (Terbaru / Terlama)
+    const sortBtn = document.getElementById('sortOrderBtn');
+    const sortLabel = document.getElementById('sortOrderLabel');
+    const chapterList = document.getElementById('chapterList');
+    let isAscending = false;
+
+    if (sortBtn && sortLabel && chapterList) {
+      sortBtn.addEventListener('click', () => {
+        isAscending = !isAscending;
+        sortLabel.textContent = isAscending ? 'Terlama' : 'Terbaru';
+        
+        const itemsArray = Array.from(chapterList.children);
+        itemsArray.reverse().forEach((item) => chapterList.appendChild(item));
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-night-bg/95 backdrop-blur-xl" data-active-classes="text-night-accent font-semibold"><div class="flex justify-around items-center h-20 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center gap-space-xs min-w-[64px] h-12 transition-colors text-night-accent font-semibold" data-path="library" href="#"><span class="material-symbols-outlined text-[22px]">local_library</span><span class="font-label-sm text-label-sm">Library</span></a><a class="flex flex-col items-center justify-center gap-space-xs min-w-[64px] h-12 text-night-muted hover:text-night-text transition-colors" data-path="jelajah" href="#"><span class="material-symbols-outlined text-[22px]">explore</span><span class="font-label-sm text-label-sm">Jelajah</span></a><a class="flex flex-col items-center justify-center gap-space-xs min-w-[64px] h-12 text-night-muted hover:text-night-text transition-colors" data-path="riwayat" href="#"><span class="material-symbols-outlined text-[22px]">history</span><span class="font-label-sm text-label-sm">Riwayat</span></a><a class="flex flex-col items-center justify-center gap-space-xs min-w-[64px] h-12 text-night-muted hover:text-night-text transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[22px]">settings</span><span class="font-label-sm text-label-sm">Pengaturan</span></a></div></nav></body></html>
