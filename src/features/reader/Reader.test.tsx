@@ -42,6 +42,7 @@ describe('Reader', () => {
     expect(screen.getByRole('heading', { name: 'Bab Pertama' })).toBeInTheDocument()
     expect(screen.getByText('Bab 1/2 · paragraf 2/3')).toBeInTheDocument()
     expect(await db.chapters.get(firstId)).toMatchObject({ lastParagraph: 1 })
+    await waitFor(async () => expect((await db.novels.get(novelId))?.lastReadAt).toBeGreaterThan(0))
     fireEvent.click(screen.getByRole('button', { name: 'Berikutnya' }))
     await waitFor(() => expect(screen.getByText('Bab 1/2 · paragraf 3/3')).toBeInTheDocument())
     fireEvent.click(screen.getByRole('button', { name: 'Berikutnya' }))

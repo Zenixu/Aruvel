@@ -21,7 +21,7 @@ export interface SourceCheck {
 
 export async function checkCatalogEntry(entry: CatalogEntry): Promise<SourceCheck> {
   const siteCheck = CapacitorHttp.request({ url: entry.site, method: 'HEAD', connectTimeout: 10_000, readTimeout: 10_000, responseType: 'text' })
-  const pluginCheck = CapacitorHttp.request({ url: entry.url, method: 'GET', headers: { Range: 'bytes=0-1023' }, connectTimeout: 10_000, readTimeout: 10_000, responseType: 'text' })
+  const pluginCheck = CapacitorHttp.request({ url: entry.url, method: 'HEAD', connectTimeout: 10_000, readTimeout: 10_000, responseType: 'text' })
   const [site, plugin] = await Promise.allSettled([siteCheck, pluginCheck])
   return {
     checkedAt: Date.now(),

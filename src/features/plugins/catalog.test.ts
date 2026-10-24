@@ -28,7 +28,7 @@ describe('LNReader catalogue', () => {
     const result = await checkCatalogEntry({ id: 'x', name: 'X', lang: 'English', version: '1', site: 'https://example.org', url: 'https://raw.githubusercontent.com/a/b/main/x.js' })
     expect(request).toHaveBeenCalledTimes(2)
     expect(request).toHaveBeenCalledWith(expect.objectContaining({ url: 'https://example.org', method: 'HEAD' }))
-    expect(request).toHaveBeenCalledWith(expect.objectContaining({ url: 'https://raw.githubusercontent.com/a/b/main/x.js', method: 'GET', headers: { Range: 'bytes=0-1023' } }))
+    expect(request).toHaveBeenCalledWith(expect.objectContaining({ url: 'https://raw.githubusercontent.com/a/b/main/x.js', method: 'HEAD' }))
     expect(result).toMatchObject({ siteStatus: 200, pluginStatus: 200 })
   })
 

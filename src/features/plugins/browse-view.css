@@ -1,0 +1,1074 @@
+/* ─── Mihon-style Jelajahi & Browse View ─── */
+
+.browse-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  padding-bottom: 96px;
+}
+
+/* ─── Top Header (Mihon Style) ─── */
+.mihon-top-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+
+.mihon-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px 4px;
+}
+
+.mihon-title {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+  letter-spacing: -0.2px;
+}
+
+.mihon-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mihon-icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.mihon-icon-btn:hover {
+  background: var(--surface);
+}
+
+.menu-anchor-wrap {
+  position: relative;
+}
+
+.mihon-dropdown-menu {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 50;
+  animation: menuFadeIn 0.15s ease;
+}
+
+@keyframes menuFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.menu-item-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.menu-item-row:hover {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+}
+
+/* ─── Mihon Subtabs: Sumber | Ekstensi (N) | Migrasi ─── */
+.mihon-tabs-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px;
+}
+
+.mihon-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 12px 8px 14px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: color 0.15s ease;
+}
+
+.mihon-tab-btn.active {
+  color: var(--text);
+}
+
+.mihon-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 3px 3px 0 0;
+}
+
+.mihon-badge-pill {
+  background: var(--surface);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+}
+
+.mihon-tab-btn.active .mihon-badge-pill {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ─── TAB 2: EKSTENSI CONTENT ─── */
+.extensions-tab-content {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ext-search-row {
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 6px 12px;
+  gap: 8px;
+}
+
+.ext-search-icon {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.ext-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+
+.ext-search-clear {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+}
+
+/* Filter Chips */
+.ext-filter-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.ext-filter-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-chip {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.filter-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+/* ─── Mihon Extensions List Item (Exact Mihon Design) ─── */
+.mihon-ext-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.mihon-ext-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px;
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 35%, transparent);
+  transition: background 0.15s ease;
+  border-radius: 8px;
+}
+
+.mihon-ext-item:hover {
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+}
+
+.mihon-ext-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-right: 14px;
+}
+
+.mihon-ext-emoji {
+  font-size: 22px;
+}
+
+.mihon-ext-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mihon-ext-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mihon-ext-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mihon-ext-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.mihon-ext-ver {
+  font-family: monospace;
+}
+
+.mihon-nsfw-tag {
+  background: #ff4757;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 4px;
+  line-height: 1.2;
+}
+
+.mihon-lang-tag {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 4px;
+  color: var(--muted);
+}
+
+.mihon-engine-tag {
+  font-size: 10px;
+  color: var(--accent);
+}
+
+/* Extension Action Buttons (Globe & Download) */
+.mihon-ext-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.mihon-globe-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: var(--muted);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.mihon-globe-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.mihon-download-btn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.mihon-download-btn:hover {
+  background: var(--surface);
+  color: var(--accent);
+}
+
+.download-svg-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.mihon-installed-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.15s ease;
+}
+
+.mihon-installed-btn:hover {
+  background: color-mix(in srgb, #ff4757 15%, transparent);
+  color: #ff4757;
+}
+
+.mihon-mini-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--rule);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+/* Custom Source Call-to-action */
+.custom-source-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  margin-top: 16px;
+  gap: 12px;
+}
+
+.cta-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cta-icon {
+  font-size: 22px;
+}
+
+.cta-text strong {
+  display: block;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.cta-text p {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.cta-add-btn {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.cta-add-btn:hover {
+  opacity: 0.9;
+}
+
+/* ─── TAB 1: SUMBER (Installed Sources Content) ─── */
+.sources-tab-content {
+  padding: 8px 16px;
+}
+
+.empty-sources-banner {
+  text-align: center;
+  padding: 48px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.empty-sources-banner .empty-icon {
+  font-size: 48px;
+}
+
+.empty-sources-banner h3 {
+  font-size: 18px;
+  margin: 0;
+  color: var(--text);
+}
+
+.empty-sources-banner p {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 320px;
+  margin: 0;
+}
+
+.goto-ext-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.source-group-section {
+  margin-bottom: 12px;
+}
+
+.source-group-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 14px 0 6px;
+}
+
+.source-items-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.source-card-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 4px;
+  cursor: pointer;
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 35%, transparent);
+  transition: background 0.15s ease;
+}
+
+.source-card-item:hover {
+  background: color-mix(in srgb, var(--surface) 50%, transparent);
+}
+
+.source-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.source-icon-badge {
+  font-size: 22px;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.source-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.source-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.source-meta-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.source-card-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.source-latest-label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.pin-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  opacity: 0.4;
+  transition: opacity 0.15s ease;
+}
+
+.pin-btn.pinned, .pin-btn:hover {
+  opacity: 1;
+}
+
+/* ─── TAB 3: MIGRATION ─── */
+.migration-tab-content {
+  padding: 16px;
+}
+
+.migration-hero-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.mig-icon {
+  font-size: 36px;
+}
+
+.migration-hero-card h2 {
+  font-size: 17px;
+  margin: 0;
+  color: var(--text);
+}
+
+.migration-hero-card p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── MODALS ─── */
+.mihon-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.mihon-modal-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.modal-input, .modal-select {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  color: var(--text);
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.modal-input:focus, .modal-select:focus {
+  border-color: var(--accent);
+}
+
+.form-row-half {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.modal-btn-cancel {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-btn-submit {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Repo Modal */
+.modal-content-repo {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.repo-intro {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.repo-form {
+  display: flex;
+  gap: 8px;
+}
+
+.repo-form .modal-input {
+  flex: 1;
+}
+
+.repo-list-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.repo-list-wrap h4 {
+  font-size: 13px;
+  margin: 0 0 4px;
+  color: var(--text);
+}
+
+.repo-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.repo-info strong {
+  display: block;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.repo-info span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.repo-status-badge {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.repo-del-btn {
+  background: transparent;
+  border: none;
+  color: #ff4757;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Globe Site Preview */
+.globe-preview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.globe-url-code {
+  background: var(--bg);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  font-family: monospace;
+  font-size: 13px;
+  word-break: break-all;
+  color: var(--accent);
+}
+
+.globe-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.modal-link-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ─── Source Explorer Header (When Browsing a Specific Source's Novels) ─── */
+.source-explorer-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+.back-btn-browse {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: var(--text);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.source-explorer-title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.source-explorer-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.source-explorer-lang {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pin-toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.explorer-search-bar {
+  padding: 12px 16px 4px;
+}
+
+.explorer-search-form {
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 8px 12px;
+  gap: 8px;
+}
+
+.search-icon-wrap {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.explorer-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+
+.search-clear-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ─── Novel Grid & Cards ─── */
+.novels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.novel-grid-card {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  min-width: 0;
+}
+
+.novel-grid-cover-wrap {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.novel-grid-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.novel-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--accent) 30%, transparent));
+}
+
+.novel-cover-placeholder span {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.novel-grid-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.35;
+}
+
+.novel-grid-author {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.browse-loading, .browse-empty, .browse-error-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 16px;
+  gap: 12px;
+}
+
+.loading-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--rule);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.retry-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (min-width: 480px) {
+  .novels-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 720px) {
+  .novels-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

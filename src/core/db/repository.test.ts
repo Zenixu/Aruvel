@@ -54,4 +54,15 @@ describe('Aruvel repositories', () => {
     expect(await testDb.chapterContents.count()).toBe(0)
     expect(await testDb.novelCategories.count()).toBe(0)
   })
+
+  it('menyimpan chapter unduhan dan melaporkan chapter yang sudah tersimpan', async () => {
+    const novelId = await libraryRepository.add({ sourceId: 'gutenberg', path: '1885', name: 'The Picture of Dorian Gray', status: 'completed' })
+    await libraryRepository.downloadChapter(novelId, { name: 'Teks lengkap', path: 'https://www.gutenberg.org/cache/epub/1885/pg1885.txt', position: 0, chapterNumber: 1 }, 'Isi lengkap.')
+
+    expect(await libraryRepository.getDownloadedChapters(novelId)).toMatchObject([{ name: 'Teks lengkap', chapterNumber: 1 }])
+    expect(await testDb.chapterContents.count()).toBe(1)
+
+    await libraryRepository.remove(novelId)
+    expect(await testDb.chapterContents.count()).toBe(0)
+  })
 })

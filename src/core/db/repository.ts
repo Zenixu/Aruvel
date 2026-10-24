@@ -1,5 +1,5 @@
 import { db } from './database'
-import { isEpubChapterContent, type Category, type EpubChapterContent, type LibraryNovel, type Novel } from './types'
+import { isEpubChapterContent, type Category, type Chapter, type EpubChapterContent, type LibraryNovel, type Novel } from './types'
 import type { ImportedEpub } from '../../features/reader/epub'
 
 export const libraryRepository = {
@@ -19,6 +19,7 @@ export const libraryRepository = {
         ...novel,
         id,
         unreadCount: chapters.filter((chapter) => chapter.novelId === id && !chapter.isRead).length,
+        lastReadAt: novel.lastReadAt ?? 0,
         categories: novelLinks.flatMap(({ categoryId: assignedId }) => {
           const category = categories.find(({ id: categoryKey }) => categoryKey === assignedId)
           return category ? [category] : []
@@ -73,6 +74,35 @@ export const libraryRepository = {
       await db.novelCategories.where('novelId').equals(id).delete()
       await db.novels.delete(id)
     })
+  },
+
+  async downloadChapter(novelId: number, chapter: Pick<Chapter, 'name' | 'path' | 'position' | 'chapterNumber'>, content: string): Promise<void> {
+    await db.transaction('rw', db.chapters, db.chapterContents, async () => {
+      const chapterId = await db.chapters.add({
+        novelId,
+        name: chapter.name,
+        path: chapter.path,
+        position: chapter.position,
+        chapterNumber: chapter.chapterNumber,
+        isRead: false,
+        lastParagraph: 0,
+        updatedAt: Date.now(),
+      })
+      await db.chapterContents.add({
+        chapterId,
+        filePath: '',
+        size: new TextEncoder().encode(content).byteLength,
+        downloadedAt: Date.now(),
+        content,
+      } as EpubChapterContent)
+    })
+  },
+
+  async getDownloadedChapters(novelId: number): Promise<Array<import('./types').Chapter>> {
+    const chapters = await db.chapters.where('novelId').equals(novelId).toArray()
+    const contents = await db.chapterContents.toArray()
+    const contentByChapter = new Map(contents.flatMap((c) => c.id === undefined ? [] : [[c.id, c]]))
+    return chapters.filter((chapter) => chapter.id !== undefined && contentByChapter.has(chapter.id))
   },
 }
 

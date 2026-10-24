@@ -1,0 +1,382 @@
+.novel-detail-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  padding-bottom: 90px;
+}
+
+.novel-detail-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+
+.novel-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.novel-header-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.novel-header-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.novel-header-source {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.back-btn, .action-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.back-btn:hover, .action-icon-btn:hover {
+  background: var(--surface);
+}
+
+.novel-hero-section {
+  display: flex;
+  gap: 16px;
+  padding: 20px 16px;
+}
+
+.novel-cover-wrapper {
+  flex-shrink: 0;
+  width: 120px;
+  height: 180px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.novel-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.novel-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  text-align: center;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--rule);
+}
+
+.novel-main-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.novel-title-large {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.novel-sub-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.meta-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.meta-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.stat-val {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.novel-action-buttons {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+
+.btn-primary-read {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--accent);
+  color: var(--on-accent);
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-primary-read:hover {
+  filter: brightness(1.1);
+}
+
+.btn-secondary-lib {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--rule);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-secondary-lib.in-lib {
+  background-color: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.novel-synopsis-section {
+  padding: 16px;
+  border-top: 1px solid var(--rule);
+}
+
+.section-label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.synopsis-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.synopsis-text.collapsed {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.expand-synopsis-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.novel-genres-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.genre-tag {
+  background: var(--surface);
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.novel-chapters-section {
+  border-top: 1px solid var(--rule);
+  padding: 16px 0;
+}
+
+.chapters-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 12px;
+}
+
+.chapters-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.chapters-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-toggle-btn {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  color: var(--text);
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chapter-search-box {
+  margin: 0 16px 12px;
+}
+
+.chapter-search-input {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  color: var(--text);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.chapters-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chapter-row-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.15s ease;
+}
+
+.chapter-row-btn:hover {
+  background: var(--surface);
+}
+
+.chapter-left {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.chapter-num {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.chapter-name {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chapter-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.chapter-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.chapter-badge.read {
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.chapter-badge.next {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.chapter-loading-container, .chapter-empty {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
